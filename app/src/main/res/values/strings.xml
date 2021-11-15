@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">To_Do_Application</string>
+
+
+    <string name="taskTitle">taskTitle</string>
+
+    <string name="taskCreationDate">taskCreationDate</string>
+
+    <string name="taskDueDate">taskDueDate</string>
+
+    <string name="taskStatus">taskStatus</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="complete">complete</string>
+
 </resources>
