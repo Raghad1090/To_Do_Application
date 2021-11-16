@@ -27,13 +27,14 @@ class TaskDescriptionFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val fragmentBinding = FragmentTaskDescriptionBinding.inflate(inflater, container, false)
-        binding = fragmentBinding
-        return fragmentBinding.root
+        binding = FragmentTaskDescriptionBinding.inflate(inflater, container, false)
+        return binding.root
+
 
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_tasks_list, container, false)
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -49,4 +50,6 @@ class TaskDescriptionFragment : Fragment() {
         super.onDestroyView()
 
     }
+
+
 }

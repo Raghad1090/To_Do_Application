@@ -16,7 +16,9 @@ import com.example.to_do_application.R
 import com.example.to_do_application.adapter.ItemAdapter
 import com.example.to_do_application.data.DataSource
 import com.example.to_do_application.databinding.FragmentTasksListBinding
+import com.example.to_do_application.model.Tasks
 import com.example.to_do_application.model.TasksViewModel
+import userTask
 
 
 private lateinit var navController: NavController
@@ -59,13 +61,18 @@ class TasksListFragment : Fragment() {
 
         binding.recyclerView.adapter = ItemAdapter(requireContext(), myDataset)
 
+        binding.addButton.setOnClickListener {
+
+            //call fun from modelview
+        }
+
+//        binding.editTaskButton.setOnClickListener { openDetailsPage() }
+//        binding.deleteTaskButton.setOnClickListener { deleteTask() }
+//        binding.taskStatus.setOnClickListener { checkedTaskCompleted() }
+
 
         //another way to use binding
 //        binding?.TasksListFragment = this
-
-    }
-
-    fun addTaskToList(task:String){
 
     }
 
