@@ -1,7 +1,7 @@
 package com.example.to_do_application.adapter
 
 import android.content.Context
-import android.content.res.Resources
+import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,28 +10,26 @@ import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.to_do_application.MainActivity
 import com.example.to_do_application.R
+import com.example.to_do_application.ui.TasksListFragmentDirections
 import com.example.to_do_application.model.Tasks
-import org.w3c.dom.Text
 
 class ItemAdapter(
     private val context: Context,
     private val dataset: List<Tasks>)
     : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
 
+
     class ItemViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
         val taskTitleTextView: TextView = view.findViewById(R.id.taskTitleview)
         val CheckBox: CheckBox = view.findViewById(R.id.taskStatus)
 
-        val editTaskButton: Button = view.findViewById(R.id.editTaskButton)
-        val deleteTaskButton: Button = view.findViewById(R.id.deleteTaskButton)
-
-        val creationDate: TextView = view.findViewById(R.id.DueDate)
-        val dueDate: TextView = view.findViewById(R.id.CreationDate)
+        val editTaskButton: ImageView = view.findViewById(R.id.editTaskButton)
+        val deleteTaskButton: ImageView = view.findViewById(R.id.deleteTaskButton)
 
     }
 
@@ -44,15 +42,61 @@ class ItemAdapter(
 
     }
 
-
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
 
         //hold data
         val item = dataset[position]
 
-        holder.editTaskButton.setOnClickListener { openDetailsPage() }
-        holder.deleteTaskButton.setOnClickListener { deleteTask() }
-        holder.CheckBox.setOnClickListener { checkedTaskCompleted() }
+        holder.taskTitleTextView.text = item.taskTitle
+
+        //open task details display page
+        holder.taskTitleTextView.setOnClickListener {
+
+            val action = TasksListFragmentDirections.actionTasksListFragmentToDisplayDetailsFragment(
+                item.taskTitle)
+            holder.view.findNavController().navigate(action)
+
+        }
+
+        //open task details edit page
+        holder.editTaskButton.setOnClickListener {
+
+//            val action = TasksListFragmentDirections.actionTasksListFragmentToTaskDescriptionFragment(
+//                item.taskTitle)
+//            holder.view.findNavController().navigate(action)
+
+        }
+
+
+        //delet task when click
+        holder.deleteTaskButton.setOnClickListener {
+
+
+        }
+
+
+
+
+        holder.CheckBox.setOnClickListener { }
+
+
+    }
+
+
+
+    fun openDetailsPage() {
+
+//      findNavController().navigate(R.id.action_tasksListFragment_to_taskDescriptionFragment)
+
+    //var openEditPage = TaskDescriptionFragmentDirection.action_tasksListFragment_to_taskDescriptionFragment
+    }
+
+
+
+    //delete fun
+    private fun deleteTask(position: Int) {
+
+
     }
 
     private fun checkedTaskCompleted(taskStaus: Boolean) {
@@ -60,16 +104,6 @@ class ItemAdapter(
     }
 
 
-    fun openDetailsPage() {
-
-      findNavController().navigate(R.id.action_tasksListFragment_to_taskDescriptionFragment)
-
-    }
-
-    private fun deleteTask() {
-
-    }
-
-    override fun getItemCount() = dataset.size
+   override fun getItemCount() = dataset.size
 
 }

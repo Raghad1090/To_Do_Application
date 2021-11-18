@@ -12,16 +12,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.to_do_application.adapter.ItemAdapter
 import com.example.to_do_application.data.DataSource
 import com.example.to_do_application.databinding.ActivityMainBinding
+import com.example.to_do_application.model.Tasks
 
 class MainActivity : AppCompatActivity() {
 
-
-lateinit var binding: ActivityMainBinding
+    private lateinit var navController: NavController
+    lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
         binding= ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -33,5 +32,10 @@ lateinit var binding: ActivityMainBinding
         val navController  = navHostFragment.navController
 
         setupActionBarWithNavController(navController)
+    }
+
+
+    override fun onSupportNavigateUp(): Boolean {
+        return navController?.navigateUp() || super.onSupportNavigateUp()
     }
 }

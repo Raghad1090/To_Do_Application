@@ -1,38 +1,30 @@
-package com.example.to_do_application.UI
+package com.example.to_do_application.ui
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.to_do_application.R
 import com.example.to_do_application.adapter.ItemAdapter
 import com.example.to_do_application.data.DataSource
 import com.example.to_do_application.databinding.FragmentTasksListBinding
 import com.example.to_do_application.model.Tasks
 import com.example.to_do_application.model.TasksViewModel
-import userTask
 
-
-private lateinit var navController: NavController
 
 class TasksListFragment : Fragment() {
 
     //delegate property
     private val sharedViewModel: TasksViewModel by activityViewModels()
 
-    //another way to use binding
-//    private var binding: FragmentTasksListBinding? = null
+    private lateinit var navController: NavController
 
     private lateinit var binding: FragmentTasksListBinding
-
 
 
     override fun onCreateView(
@@ -42,49 +34,27 @@ class TasksListFragment : Fragment() {
 
         binding = FragmentTasksListBinding.inflate(inflater, container, false)
         return binding.root
-
-        //var button = findViewById<Button>(R.id.addButton)
-
-        //button.setOnClickListener{}
-
-        //another way to use binding
-//        val fragmentBinding = FragmentTasksListBinding.inflate(inflater, container, false)
-//        binding = fragmentBinding
-//        return fragmentBinding.root
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-         val myDataset = DataSource().loadTasks()
+        val myDataset = DataSource().loadTasks()
 
         binding.recyclerView.adapter = ItemAdapter(requireContext(), myDataset)
 
         binding.addButton.setOnClickListener {
 
-            //call fun from modelview
+            findNavController().navigate(R.id.action_tasksListFragment_to_addFragment)
+
         }
 
-//        binding.editTaskButton.setOnClickListener { openDetailsPage() }
-//        binding.deleteTaskButton.setOnClickListener { deleteTask() }
-//        binding.taskStatus.setOnClickListener { checkedTaskCompleted() }
-
-
-        //another way to use binding
-//        binding?.TasksListFragment = this
-
-    }
-
-    companion object {
 
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-//        binding = null
+
     }
-
-
 }
-
