@@ -10,10 +10,4 @@ data class Tasks (val taskTitle:String,
                   val description : String){
 
 
-
-//    Long = System.currentTimeMillis()
-//    val date : String
-//
-//    get() = DateFormat.getDateTimeInstance().format(taskCreationDate)
-
 }
