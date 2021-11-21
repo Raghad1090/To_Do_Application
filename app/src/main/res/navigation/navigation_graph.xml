@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/tasksListFragment">
+
+    <fragment
+        android:id="@+id/tasksListFragment"
+        android:name="com.example.to_do_application.ui.TasksListFragment"
+        android:label="My To Do List"
+        tools:layout="@layout/fragment_tasks_list">
+        <action
+            android:id="@+id/action_tasksListFragment_to_taskDescriptionFragment"
+            app:destination="@id/taskDescriptionFragment" />
+        <action
+            android:id="@+id/action_tasksListFragment_to_displayDetailsFragment"
+            app:destination="@id/displayDetailsFragment" />
+        <action
+            android:id="@+id/action_tasksListFragment_to_addFragment"
+            app:destination="@id/addFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/taskDescriptionFragment"
+        android:name="com.example.to_do_application.ui.TaskDescriptionFragment"
+        android:label="Task Details "
+        tools:layout="@layout/fragment_task_description">
+        <action
+            android:id="@+id/action_taskDescriptionFragment_to_tasksListFragment"
+            app:destination="@id/tasksListFragment" />
+        <argument
+            android:name="taskTitleE"
+            app:argType="string" />
+        <argument
+            android:name="cDateE"
+            app:argType="string" />
+        <argument
+            android:name="dDateE"
+            app:argType="string" />
+        <argument
+            android:name="taskSE"
+            app:argType="boolean" />
+        <argument
+            android:name="descriptionE"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/displayDetailsFragment"
+        android:name="com.example.to_do_application.DisplayDetailsFragment"
+        android:label="Task Details "
+        tools:layout="@layout/fragment_display_details">
+        <action
+            android:id="@+id/action_displayDetailsFragment_to_tasksListFragment"
+            app:destination="@id/tasksListFragment" />
+        <argument
+            android:name="taskTitleD"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/addFragment"
+        android:name="com.example.to_do_application.AddFragment"
+        android:label="Add Task">
+        <action
+            android:id="@+id/action_addFragment_to_tasksListFragment"
+            app:destination="@id/tasksListFragment" />
+    </fragment>
+</navigation>
