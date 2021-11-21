@@ -46,7 +46,10 @@ class TasksListFragment : Fragment() {
 
         binding.addButton.setOnClickListener {
 
-            findNavController().navigate(R.id.action_tasksListFragment_to_addFragment)
+            val action = TasksListFragmentDirections.actionTasksListFragmentToAddFragment("")
+
+            view.findNavController().navigate(action)
+
 
         }
 

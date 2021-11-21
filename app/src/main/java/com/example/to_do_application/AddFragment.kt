@@ -7,9 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import com.example.to_do_application.databinding.FragmentAddBinding
 import com.example.to_do_application.databinding.FragmentDisplayDetailsBinding
+import com.example.to_do_application.model.Tasks
 import com.example.to_do_application.model.TasksViewModel
+import com.example.to_do_application.ui.TasksListFragmentDirections
 
 class AddFragment : Fragment() {
 
@@ -21,9 +24,15 @@ class AddFragment : Fragment() {
     private lateinit var binding: FragmentAddBinding
 
 
+    //to get arg values
+    private lateinit var userTitleAdd: String
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
+
+            userTitleAdd = it.getString("taskTitleAdd")!!
 
         }
     }
@@ -40,12 +49,18 @@ class AddFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.done.setOnClickListener{ sharedViewModel.addNewTask()}
+//  binding.done.setOnClickListener{
+//
+//        val action = AddFragmentDirections.actionAddFragmentToTasksListFragment()
+//
+//        view.findNavController().navigate(action)
+//
+//        var addNewTask = Tasks(sharedViewModel.taskTitle.value!!,sharedViewModel.cDate.value!!,sharedViewModel.dDate.value!!,
+//            taskStatus = false,sharedViewModel.taskDescripton.value!!)
+//
+//        sharedViewModel.addNewTask(addNewTask)
+//
+//        }
     }
 
-    companion object {
-
-
-
-                }
     }

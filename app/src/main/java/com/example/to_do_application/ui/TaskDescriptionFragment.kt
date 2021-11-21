@@ -1,19 +1,27 @@
 package com.example.to_do_application.ui
 
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import com.example.to_do_application.AddFragmentDirections
+import com.example.to_do_application.R
 import com.example.to_do_application.databinding.FragmentDisplayDetailsBinding
 import com.example.to_do_application.databinding.FragmentTaskDescriptionBinding
+import com.example.to_do_application.model.Tasks
 import com.example.to_do_application.model.TasksViewModel
 
 
 class TaskDescriptionFragment : Fragment() {
 
+    //edit page
 
     private val sharedViewModel: TasksViewModel by activityViewModels()
 
@@ -23,10 +31,7 @@ class TaskDescriptionFragment : Fragment() {
 
     //to get arg values
     private lateinit var userTask1: String
-    private lateinit var userCdate1: String
-    private lateinit var userDdate1: String
-    private var userTstatus1: Boolean =false
-    private lateinit var userTdes1: String
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,10 +40,7 @@ class TaskDescriptionFragment : Fragment() {
 
 
             userTask1 = it.getString("taskTitleE")!!
-            userCdate1 = it.getString("cDateE")!!
-            userDdate1 = it.getString("dDateE")!!
-            userTstatus1 = it.getBoolean("taskSE")
-            userTdes1 = it.getString("descriptionE")!!
+
 
 
         }
@@ -49,20 +51,38 @@ class TaskDescriptionFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = FragmentTaskDescriptionBinding.inflate(inflater, container, false)
+        binding= DataBindingUtil.inflate(layoutInflater,
+            R.layout.fragment_task_description,container,false)
         return binding.root
 
-
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_tasks_list, container, false)
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
 
-        //binding?.FragmentTaskDescriptionBinding = this
+        binding.viewModel=sharedViewModel
+        binding.lifecycleOwner=viewLifecycleOwner
+
+        sharedViewModel.editTask(userTask1)
+
+
+
+        //delet task when click
+        binding.deleteTaskButton.setOnClickListener {
+
+            val action = TaskDescriptionFragmentDirections.actionTaskDescriptionFragmentToTasksListFragment()
+
+            view.findNavController().navigate(action)
+
+//            var taskToDelet = Tasks(sharedViewModel.taskTitle.value!!,sharedViewModel.cDate.value!!,sharedViewModel.dDate.value!!
+//            ,sharedViewModel.tStatus.value!!,sharedViewModel.taskDescripton.value!!)
+//
+//            sharedViewModel.deleteTask(taskToDelet)
+        }
+
     }
 
     companion object {

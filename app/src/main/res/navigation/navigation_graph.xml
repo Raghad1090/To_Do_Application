@@ -31,18 +31,6 @@
         <argument
             android:name="taskTitleE"
             app:argType="string" />
-        <argument
-            android:name="cDateE"
-            app:argType="string" />
-        <argument
-            android:name="dDateE"
-            app:argType="string" />
-        <argument
-            android:name="taskSE"
-            app:argType="boolean" />
-        <argument
-            android:name="descriptionE"
-            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/displayDetailsFragment"
@@ -63,5 +51,8 @@
         <action
             android:id="@+id/action_addFragment_to_tasksListFragment"
             app:destination="@id/tasksListFragment" />
+        <argument
+            android:name="taskTitleAdd"
+            app:argType="string" />
     </fragment>
 </navigation>

@@ -19,16 +19,10 @@ class DisplayDetailsFragment : Fragment() {
 
     private val sharedViewModel: TasksViewModel by activityViewModels()
 
-
-
     private lateinit var binding: FragmentDisplayDetailsBinding
 
     //to get arg values
     private lateinit var userTaskd: String
-    private lateinit var userCdate: String
-    private lateinit var userDdate: String
-    private var userTstatus: Boolean = false
-    private lateinit var userTdes: String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,11 +31,7 @@ class DisplayDetailsFragment : Fragment() {
 
             userTaskd = it.getString("taskTitleD")!!
 
-
-
         }
-
-
 
     }
 
@@ -49,6 +39,7 @@ class DisplayDetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         // Inflate the layout for this fragment
         binding=DataBindingUtil.inflate(layoutInflater,R.layout.fragment_display_details,container,false)
         return binding.root
@@ -56,6 +47,7 @@ class DisplayDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.viewModel=sharedViewModel
         binding.lifecycleOwner=viewLifecycleOwner
 

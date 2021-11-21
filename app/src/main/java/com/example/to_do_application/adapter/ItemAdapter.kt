@@ -26,10 +26,13 @@ class ItemAdapter(
     class ItemViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
         val taskTitleTextView: TextView = view.findViewById(R.id.taskTitleview)
+
         val CheckBox: CheckBox = view.findViewById(R.id.taskStatus)
 
         val editTaskButton: ImageView = view.findViewById(R.id.editTaskButton)
-        val deleteTaskButton: ImageView = view.findViewById(R.id.deleteTaskButton)
+
+        val dueDateAdapter1: TextView = view.findViewById(R.id.dueDateAdapter)
+
 
     }
 
@@ -48,6 +51,9 @@ class ItemAdapter(
         val item = dataset[position]
 
         holder.taskTitleTextView.text = item.taskTitle
+        holder.dueDateAdapter1.text = item.taskDueDate
+
+
 
         //open task details display page
         holder.taskTitleTextView.setOnClickListener {
@@ -61,19 +67,10 @@ class ItemAdapter(
         //open task details edit page
         holder.editTaskButton.setOnClickListener {
 
-//            val action = TasksListFragmentDirections.actionTasksListFragmentToTaskDescriptionFragment(
-//                item.taskTitle)
-//            holder.view.findNavController().navigate(action)
+        val action = TasksListFragmentDirections.actionTasksListFragmentToTaskDescriptionFragment(item.taskTitle)
+        holder.view.findNavController().navigate(action)
 
         }
-
-
-        //delet task when click
-        holder.deleteTaskButton.setOnClickListener {
-
-
-        }
-
 
 
 
@@ -82,22 +79,6 @@ class ItemAdapter(
 
     }
 
-
-
-    fun openDetailsPage() {
-
-//      findNavController().navigate(R.id.action_tasksListFragment_to_taskDescriptionFragment)
-
-    //var openEditPage = TaskDescriptionFragmentDirection.action_tasksListFragment_to_taskDescriptionFragment
-    }
-
-
-
-    //delete fun
-    private fun deleteTask(position: Int) {
-
-
-    }
 
     private fun checkedTaskCompleted(taskStaus: Boolean) {
 
