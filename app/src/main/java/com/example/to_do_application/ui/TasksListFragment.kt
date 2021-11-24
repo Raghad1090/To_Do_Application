@@ -50,9 +50,7 @@ class TasksListFragment : Fragment() {
 
             view.findNavController().navigate(action)
 
-
         }
-
 
     }
 

@@ -22,24 +22,22 @@ import java.util.*
 class TasksViewModel : ViewModel() {
 
     //task title
-    private val _taskTitle = MutableLiveData<String>()
-    val taskTitle: LiveData<String> = _taskTitle
+     val taskTitle = MutableLiveData<String>()
 
     //task duraation
-    private val _taskCreationDate = MutableLiveData<String>()
-    val cDate: LiveData<String> = _taskCreationDate
+    val taskCreationDate = MutableLiveData<String>()
 
-    private val _taskDueDate = MutableLiveData<String>()
-    val dDate: LiveData<String> = _taskDueDate
+
+    val taskDueDate = MutableLiveData<String>()
 
 
     //indicate task completed or not
-    private val _taskStatus = MutableLiveData<Boolean>()
-    val tStatus: LiveData<Boolean> = _taskStatus
+    val taskStatus = MutableLiveData<Boolean>()
+
 
     //description of the task
-    private val _taskDescripton = MutableLiveData<String>()
-    val taskDescripton: LiveData<String> = _taskDescripton
+    val taskDescripton = MutableLiveData<String>()
+
 
 
     fun displayTask(title: String) {
@@ -49,10 +47,10 @@ class TasksViewModel : ViewModel() {
         var currentDdate = DataSource().loadTasks().find { it.taskDueDate == title }
         var currentTd = DataSource().loadTasks().find { it.description == title }
 
-        _taskTitle.value = currentTask?.taskTitle
-        _taskCreationDate.value = currentCdate?.taskCreationDate
-        _taskDueDate.value = currentDdate?.taskDueDate
-        _taskDescripton.value = currentTd?.description
+        taskTitle.value = currentTask?.taskTitle
+        taskCreationDate.value = currentCdate?.taskCreationDate
+        taskDueDate.value = currentDdate?.taskDueDate
+        taskDescripton.value = currentTd?.description
     }
 
 
@@ -63,10 +61,10 @@ class TasksViewModel : ViewModel() {
         var currentDdate = DataSource().loadTasks().find { it.taskDueDate == title }
         var currentTd = DataSource().loadTasks().find { it.description == title }
 
-        _taskTitle.value = currentTask?.taskTitle
-        _taskCreationDate.value = currentCdate?.taskCreationDate
-        _taskDueDate.value = currentDdate?.taskDueDate
-        _taskDescripton.value = currentTd?.description
+        taskTitle.value = currentTask?.taskTitle
+        taskCreationDate.value = currentCdate?.taskCreationDate
+        taskDueDate.value = currentDdate?.taskDueDate
+        taskDescripton.value = currentTd?.description
 
     }
 

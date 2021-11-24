@@ -38,10 +38,7 @@ class TaskDescriptionFragment : Fragment() {
         super.onCreate(savedInstanceState)
         arguments?.let {
 
-
             userTask1 = it.getString("taskTitleE")!!
-
-
 
         }
     }
@@ -73,14 +70,18 @@ class TaskDescriptionFragment : Fragment() {
         //delet task when click
         binding.deleteTaskButton.setOnClickListener {
 
-            val action = TaskDescriptionFragmentDirections.actionTaskDescriptionFragmentToTasksListFragment()
-
-            view.findNavController().navigate(action)
 
 //            var taskToDelet = Tasks(sharedViewModel.taskTitle.value!!,sharedViewModel.cDate.value!!,sharedViewModel.dDate.value!!
 //            ,sharedViewModel.tStatus.value!!,sharedViewModel.taskDescripton.value!!)
-//
-//            sharedViewModel.deleteTask(taskToDelet)
+
+            var taskToDelet = Tasks(binding.editTaskTitle.text.toString(),"",binding.editDueDate.text.toString(),
+            taskStatus = false,binding.editTaskDetails.text.toString())
+
+            sharedViewModel.deleteTask(taskToDelet)
+
+            val action = TaskDescriptionFragmentDirections.actionTaskDescriptionFragmentToTasksListFragment()
+
+            view.findNavController().navigate(action)
         }
 
     }

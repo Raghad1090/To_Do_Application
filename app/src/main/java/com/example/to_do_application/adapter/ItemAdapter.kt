@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.to_do_application.R
 import com.example.to_do_application.ui.TasksListFragmentDirections
 import com.example.to_do_application.model.Tasks
+import com.google.android.material.datepicker.MaterialDatePicker
 
 class ItemAdapter(
     private val context: Context,
@@ -53,14 +54,13 @@ class ItemAdapter(
         holder.taskTitleTextView.text = item.taskTitle
         holder.dueDateAdapter1.text = item.taskDueDate
 
-
-
-        //open task details display page
+     //open task details display page
         holder.taskTitleTextView.setOnClickListener {
 
             val action = TasksListFragmentDirections.actionTasksListFragmentToDisplayDetailsFragment(
                 item.taskTitle)
             holder.view.findNavController().navigate(action)
+
 
         }
 
@@ -75,10 +75,8 @@ class ItemAdapter(
 
 
         holder.CheckBox.setOnClickListener { }
-
-
+        
     }
-
 
     private fun checkedTaskCompleted(taskStaus: Boolean) {
 

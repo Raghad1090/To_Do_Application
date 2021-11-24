@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -42,25 +43,30 @@ class AddFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add, container, false)
+        binding=DataBindingUtil.inflate(layoutInflater,R.layout.fragment_add,container,false)
+        return binding.root
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//  binding.done.setOnClickListener{
-//
-//        val action = AddFragmentDirections.actionAddFragmentToTasksListFragment()
-//
-//        view.findNavController().navigate(action)
-//
-//        var addNewTask = Tasks(sharedViewModel.taskTitle.value!!,sharedViewModel.cDate.value!!,sharedViewModel.dDate.value!!,
-//            taskStatus = false,sharedViewModel.taskDescripton.value!!)
-//
-//        sharedViewModel.addNewTask(addNewTask)
-//
-//        }
-    }
+  binding.done.setOnClickListener {
 
+
+//        var addNewTask1 = Tasks(sharedViewModel.taskTitle.value!!,sharedViewModel.taskCreationDate.value!!,sharedViewModel.taskDueDate.value!!,
+//        taskStatus = false,sharedViewModel.taskDescripton.value!!)
+
+          var addNewTask1 = Tasks(binding.titleOftask.text.toString(),binding.creationDateOftask.text.toString(),binding.dueDateOftask.text.toString(),
+          taskStatus = false,binding.descriptionOftask.text.toString())
+
+
+        sharedViewModel.addNewTask(addNewTask1)
+
+      val action = AddFragmentDirections.actionAddFragmentToTasksListFragment()
+
+      view.findNavController().navigate(action)
+
+      }
     }
+}
